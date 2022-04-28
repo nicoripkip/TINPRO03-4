@@ -19,8 +19,8 @@ public class App
      */
     public static void main(String[] args) throws Exception 
     {
-        Window window = new Window(800, 600, "Administratie systeem");
-        
+        Window window = new Window(1366, 768, "Administratie systeem");
+
         window.initialize();
         out.println("[" + Colors.TEXT_BLUE + "info" + Colors.TEXT_RESET + "]\t\tJava window opgestart!");
     }
