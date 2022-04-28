@@ -1,11 +1,12 @@
 package main;
 
 
+import window.Window;
 import static java.lang.System.out;
 
 
 /**
- * @author Nico van Ommen
+ * @author Nico van Ommen | 1030808
  * @since 04/27/2022
  */
 public class App
@@ -18,6 +19,9 @@ public class App
      */
     public static void main(String[] args) throws Exception 
     {
-        out.println("[info]\t\tHellow World!");
+        Window window = new Window(800, 600, "Administratie systeem");
+        
+        window.initialize();
+        out.println("[" + Colors.TEXT_BLUE + "info" + Colors.TEXT_RESET + "]\t\tJava window opgestart!");
     }
 }
