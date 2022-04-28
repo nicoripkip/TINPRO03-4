@@ -34,6 +34,7 @@ public class Window
     private int _height;
     private String _windowText;
     private JFrame _frame;
+    private JPanel _header;
     private JPanel _panel;
 
 
@@ -51,6 +52,7 @@ public class Window
         this.setWindowText(windowText);
 
         this._frame = new JFrame(this.getWindowText());
+        this._header = new JPanel();
         this._panel = new JPanel();
     }
 
@@ -68,16 +70,16 @@ public class Window
         this.getWindowFrame().setLocationRelativeTo(null);
 
         // Initialiseer de panel opties
-        this.getWindowPanel().setSize(1340, 100);
-        this.getWindowPanel().setLayout(new GridLayout(1, 1));
-        this.getWindowPanel().setLocation(5, 0);
-        this.getWindowPanel().setBorder(BorderFactory.createLineBorder(Color.black));
+        this.getWindowHeader().setSize(1340, 100);
+        this.getWindowHeader().setLayout(new GridLayout(1, 1));
+        this.getWindowHeader().setLocation(5, 0);
+        this.getWindowHeader().setBorder(BorderFactory.createLineBorder(Color.black));
 
         // Voeg onderdelen toe aan de panel
-        this.getWindowPanel().add(this.CustomJLabelComponent("Administratiesysteem", ComponentPositions.MIDDLE, 100));
+        this.getWindowHeader().add(this.CustomJLabelComponent("Administratiesysteem", ComponentPositions.MIDDLE, 100));
 
         // Voeg onderdelen toe aan het frame
-        this.getWindowFrame().add(this.getWindowPanel());
+        this.getWindowFrame().add(this.getWindowHeader());
     }
 
 
@@ -95,7 +97,6 @@ public class Window
 
         label.setText(text);
         label.setSize(new Dimension(1340, 50));
-        // label.setHorizontalTextPosition(JLabel.CENTER);
         
         switch (position)
         {
@@ -188,6 +189,16 @@ public class Window
     private JFrame getWindowFrame()
     {
         return this._frame;
+    }
+
+    /**
+     * Methode voor het ophalen van de window panel
+     * 
+     * @return JPanel
+     */
+    private JPanel getWindowHeader()
+    {
+        return this._header;
     }
 
 
