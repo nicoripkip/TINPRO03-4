@@ -1,13 +1,7 @@
 package window;
 
 
-import java.awt.GridLayout;
-import java.awt.Color;
-import java.awt.*;
-import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import static java.lang.System.out;
 
 
 /**
@@ -33,10 +27,6 @@ public class Window
     private int _width;
     private int _height;
     private String _windowText;
-    private JFrame _frame;
-    private JPanel _header;
-    private JPanel _panel;
-
 
     /**
      * Constructor
@@ -50,68 +40,21 @@ public class Window
         this.setWindowWidth(width);
         this.setWindowHeight(height);
         this.setWindowText(windowText);
-
-        this._frame = new JFrame(this.getWindowText());
-        this._header = new JPanel();
-        this._panel = new JPanel();
     }
 
 
-    /**
-     * Methode voor het bouwen van het scherm
-     */
-    public void initialize()
+    public void bootscreen()
     {
-        // Initialiseer de raam functies
-        this.getWindowFrame().setSize(this.getWindowWidth(), this.getWindowHeight());
-        this.getWindowFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.getWindowFrame().setVisible(true);
-        this.getWindowFrame().setResizable(false);
-        this.getWindowFrame().setLocationRelativeTo(null);
-
-        // Initialiseer de panel opties
-        this.getWindowHeader().setSize(1340, 100);
-        this.getWindowHeader().setLayout(new GridLayout(1, 1));
-        this.getWindowHeader().setLocation(5, 0);
-        this.getWindowHeader().setBorder(BorderFactory.createLineBorder(Color.black));
-
-        // Voeg onderdelen toe aan de panel
-        this.getWindowHeader().add(this.CustomJLabelComponent("Administratiesysteem", ComponentPositions.MIDDLE, 100));
-
-        // Voeg onderdelen toe aan het frame
-        this.getWindowFrame().add(this.getWindowHeader());
-    }
-
-
-    /**
-     * Methode voor het toevoegen van een custom jpanel object
-     * 
-     * @param text
-     * @param position
-     * @param size
-     * @return JLabel
-     */
-    private JLabel CustomJLabelComponent(String text, ComponentPositions position, int size)
-    {
-        JLabel label = new JLabel();
-
-        label.setText(text);
-        label.setSize(new Dimension(1340, 50));
-        
-        switch (position)
-        {
-            case LEFT:
-                label.setHorizontalAlignment(JLabel.LEFT);
-            break;
-            case MIDDLE:
-                label.setHorizontalAlignment(JLabel.CENTER);
-            break;
-            case RIGHT:
-                label.setHorizontalAlignment(JLabel.RIGHT);
-            break;
-        }
-
-        return label;
+        out.println("\n\n\n\n\n\n");
+        out.println("\t\t\t\t\t\t _____     _                          _              _            ");
+        out.println("\t\t\t\t\t\t(  _  )   ( )          _       _     ( )_           ( )_ _        ");
+        out.println("\t\t\t\t\t\t| (_) |  _| | ___ ___ (_) ___ (_) ___|  _)_ __   _ _|  _)_)  __   ");
+        out.println("\t\t\t\t\t\t(  _  )/ _  |  _   _    |  _    |  __) | (  __)/ _  ) | | |/ __   ");
+        out.println("\t\t\t\t\t\t| | | | (_| | ( ) ( ) | | ( ) | |__    |_| |  ( (_| | |_| |  ___/ ");
+        out.println("\t\t\t\t\t\t(_) (_) __ _)_) (_) (_)_)_) (_)_)____/ __)_)    __ _) __)_)  ___) ");  
+        out.println("\n\n\n");
+        out.println("\t\t\t\t\t\tCopyright: Niko van Ommen - 1030808 - 2022");
+        out.println("\n\n\n");
     }
 
 
@@ -178,37 +121,5 @@ public class Window
     public String getWindowText()
     {
         return this._windowText;
-    }
-
-
-    /**
-     * Methode voor het ophalen van de window frame
-     * 
-     * @return JFrame
-     */
-    private JFrame getWindowFrame()
-    {
-        return this._frame;
-    }
-
-    /**
-     * Methode voor het ophalen van de window panel
-     * 
-     * @return JPanel
-     */
-    private JPanel getWindowHeader()
-    {
-        return this._header;
-    }
-
-
-    /**
-     * Methode voor het ophalen van de window panel
-     * 
-     * @return JPanel
-     */
-    private JPanel getWindowPanel()
-    {
-        return this._panel;
     }
 }
