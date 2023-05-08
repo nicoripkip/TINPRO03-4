@@ -13,7 +13,6 @@ abstract class BasePerson
     private String _firstname;
     private String _lastname;
     private LocalDate _dateOfBirth;
-    private Gender _gender;
 
 
     /**
@@ -23,12 +22,11 @@ abstract class BasePerson
      * @param lastname
      * @param dateOfBirth
      */
-    public BasePerson(String firstname, String lastname, LocalDate dateOfBirth, Gender gender)
+    public BasePerson(String firstname, String lastname, LocalDate dateOfBirth)
     {
         this.setFirstName(firstname);
         this.setLastName(lastname);
         this.setDateOfBirth(dateOfBirth);
-        this.setGender(gender);
     }
 
 
@@ -106,27 +104,5 @@ abstract class BasePerson
     public int getAge()
     {
         return LocalDate.now().getYear() - this._dateOfBirth.getYear();
-    }
-
-
-    /**
-     * Methode voor het zetten van de gender
-     * 
-     * @param gender
-     */
-    public void setGender(Gender gender)
-    {
-        this._gender = gender;
-    }
-
-
-    /**
-     * Methode voor het ophalen van het gender
-     * 
-     * @return
-     */
-    public Gender getGender()
-    {
-        return this._gender;
     }
 }

@@ -14,7 +14,11 @@ import util.Reader;
  */
 public class App
 {
-    private static final String BASE_STRING = "file:///C:/Users/Nicki/Documents/Projecten/Java/TINPRO03-4/";
+    
+
+
+    // private static final String BASE_STRING = "file:///C:/Users/Nicki/Documents/Projecten/Java/TINPRO03-4/";
+    private static final String BASE_STRING = "file:///home/niko/Documenten/Projecten/Java/TINPRO03-4/";
 
     /**
      * Methode voor het starten van het programma
@@ -28,8 +32,6 @@ public class App
         window.bootscreen();
 
         String data = Reader.getDataFromFile(BASE_STRING + "studentData.json");
-
-        HTTP    
 
         System.out.println(Colors.PRINT_INFO + data);
     }
