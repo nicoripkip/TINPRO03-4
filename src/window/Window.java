@@ -31,15 +31,10 @@ public class Window
     /**
      * Constructor
      * 
-     * @param width
-     * @param height
-     * @param windowText
      */
-    public Window(int width, int height, String windowText)
+    public Window()
     {
-        this.setWindowWidth(width);
-        this.setWindowHeight(height);
-        this.setWindowText(windowText);
+        // TODO: not implemented
     }
 
 
@@ -53,73 +48,7 @@ public class Window
         out.println("\t\t\t\t\t\t| | | | (_| | ( ) ( ) | | ( ) | |__    |_| |  ( (_| | |_| |  ___/ ");
         out.println("\t\t\t\t\t\t(_) (_) __ _)_) (_) (_)_)_) (_)_)____/ __)_)    __ _) __)_)  ___) ");  
         out.println("\n\n\n");
-        out.println("\t\t\t\t\t\tCopyright: Niko van Ommen - 1030808 - 2022");
+        out.println("\t\t\t\t\t\tCopyright: Niko van Ommen - 1030808 - 2023");
         out.println("\n\n\n");
-    }
-
-
-    /**
-     * Methode voor het zetten van de window breedte
-     * 
-     * @param width
-     */
-    public void setWindowWidth(int width)
-    {
-        this._width = width;
-    }
-
-
-    /**
-     * Methode voor het ophalen van de window breedte
-     * 
-     * @return int
-     */
-    public int getWindowWidth()
-    {
-        return this._width;
-    }
-
-
-    /**
-     * Methode voor het instellen van de window hoogte
-     * 
-     * @param height
-     */
-    public void setWindowHeight(int height)
-    {
-        this._height = height;
-    }
-
-
-    /**
-     * Methode voor het ophalen van de window hoogte
-     * 
-     * @return int
-     */
-    public int getWindowHeight()
-    {
-        return this._height;
-    }
-
-
-    /**
-     * Methode voor het zetten van de windowtext
-     * 
-     * @param text
-     */
-    public void setWindowText(String text)
-    {
-        this._windowText = text;
-    }
-
-
-    /**
-     * Methode voor het ophalen van de window text
-     * 
-     * @return String
-     */
-    public String getWindowText()
-    {
-        return this._windowText;
     }
 }

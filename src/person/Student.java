@@ -11,7 +11,6 @@ import java.time.LocalDate;
 public class Student extends BasePerson 
 {
     private long _studentNumber;
-    private StudentGroup _group;
 
 
     /**
@@ -21,7 +20,7 @@ public class Student extends BasePerson
      * @param lastname
      * @param dateOfBirth
      */
-    public Student(String firstname, String lastname, LocalDate dateOfBirth, Gender gender, long number, StudentGroup group)
+    public Student(String firstname, String lastname, LocalDate dateOfBirth, Gender gender, long number)
     {
         super(firstname, lastname, dateOfBirth, gender);
 
@@ -48,26 +47,5 @@ public class Student extends BasePerson
     public long getStudentNumber()
     {
         return this._studentNumber;
-    }
-
-
-    /**
-     * Methode voor het zetten van de student group
-     * 
-     * @param group
-     */
-    public void setStudentGroup(StudentGroup group)
-    {
-        this._group = group;
-    }
-
-
-    /**
-     * 
-     * @return
-     */
-    public StudentGroup getStudentGroup()
-    {
-        return this._group;
     }
 }
