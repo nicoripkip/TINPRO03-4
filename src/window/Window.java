@@ -8,26 +8,8 @@ import static java.lang.System.out;
  * @author Nico van Ommen | 1030808
  * @since 04/27/2022
  */
-enum ComponentPositions
-{
-    LEFT,
-    MIDDLE,
-    RIGHT,
-    TOP,
-    BOTTOM,
-}
-
-
-/**
- * @author Nico van Ommen | 1030808
- * @since 04/27/2022
- */
 public class Window
 {
-    private int _width;
-    private int _height;
-    private String _windowText;
-
     /**
      * Constructor
      * 

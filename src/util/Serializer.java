@@ -32,8 +32,6 @@ public class Serializer
      */
     public Token nextToken(String data) 
     {
-
-
         return Token.TOKEN_SQUARE_BRACKET;
     }
 }

@@ -2,6 +2,9 @@ package person;
 
 
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
+
 import subject.CourseSubject;
 
 
@@ -13,9 +16,10 @@ public class Student extends BasePerson
 {
     private long _studentNumber;
     private String _course;
-    private int _currentYear;
-    private CourseSubject[] _totalSubjects;
-    private CourseSubject[] _openSubjects;
+    private String _class;
+    private String _currentYear;
+    private List<CourseSubject> _totalSubjects;
+    private List<CourseSubject> _openSubjects;
 
 
     /**
@@ -25,7 +29,7 @@ public class Student extends BasePerson
      * @param lastname
      * @param dateOfBirth
      */
-    public Student(String firstname, String lastname, LocalDate dateOfBirth, long number, String course, int year)
+    public Student(String firstname, String lastname, LocalDate dateOfBirth, long number, String course, String year)
     {
         super(firstname, lastname, dateOfBirth);
 
@@ -34,8 +38,29 @@ public class Student extends BasePerson
         this.setCourse(course);
         this.setCurrentYear(year);
 
-        this.setTotalSubjects(new CourseSubject[10]);
-        this.setOpenSubjects(new CourseSubject[10]);
+        this.setTotalSubjects(null);
+        this.setOpenSubjects(null);
+    }
+
+
+    public void Display()
+    {
+        System.out.println("Naam: " + this.getFirstName() + " " + this.getLastName());
+        System.out.println("Klas: " + this.getClass());
+        System.out.println("Studie: " + this.getCourse());
+        System.out.println("Studiejaar: " + this.getCurrentYear());
+        System.out.println("Vakken:");
+        for (int i = 0; i < this.getTotalSubjects().size(); i++) {
+            System.out.println("\tNaam: " + this.getTotalSubjects().get(i).getCourseName());
+            System.out.println("Cijfer: " + this.getTotalSubjects().get(i).getGrade());
+        }
+        System.out.println("Openstaande vakken:");
+        for (int i = 0; i < this.getTotalSubjects().size(); i++) {
+            if (!this.getTotalSubjects().get(i).subjectFinished()) {
+                System.out.println("\tNaam: " + this.getTotalSubjects().get(i).getCourseName());
+            }
+        }
+        System.out.println("\n");
     }
 
 
@@ -66,7 +91,7 @@ public class Student extends BasePerson
      * 
      * @param year
      */
-    public void setCurrentYear(int year)
+    public void setCurrentYear(String year)
     {
         this._currentYear = year;
     }
@@ -77,9 +102,20 @@ public class Student extends BasePerson
      * 
      * @param total
      */
-    public void setTotalSubjects(CourseSubject[] total)
+    public void setTotalSubjects(List<CourseSubject> total)
     {
         this._totalSubjects = total;
+    }
+
+
+    /**
+     * Methode voor het zetten van de klas
+     * 
+     * @param clazz
+     */
+    public void setClass(String clazz)
+    {
+        this._class = clazz;
     }
 
 
@@ -88,7 +124,7 @@ public class Student extends BasePerson
      * 
      * @param open
      */
-    public void setOpenSubjects(CourseSubject[] open)
+    public void setOpenSubjects(List<CourseSubject> open)
     {
         this._openSubjects = open;
     }   
@@ -121,7 +157,7 @@ public class Student extends BasePerson
      * 
      * @param year
      */
-    public int getCurrentYear()
+    public String getCurrentYear()
     {
         return this._currentYear;
     }
@@ -132,7 +168,7 @@ public class Student extends BasePerson
      * 
      * @param total
      */
-    public CourseSubject[] getTotalSubjects()
+    public List<CourseSubject> getTotalSubjects()
     {
         return this._totalSubjects;
     }
@@ -143,8 +179,19 @@ public class Student extends BasePerson
      * 
      * @param open
      */
-    public CourseSubject[] setOpenSubjects()
+    public List<CourseSubject> setOpenSubjects()
     {
         return this._openSubjects;
     } 
+
+
+    /**
+     * Methode voor het ophalen van de klas
+     * 
+     * @param total
+     */
+    public String getClasz()
+    {
+        return this._class;
+    }
 }

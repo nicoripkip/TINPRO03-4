@@ -8,9 +8,28 @@ package subject;
 public class CourseSubject
 {
     private String   _courseCode;
+    private String   _courseName;
     private int      _courseYear;
     private int      _totalEcs;
     private float    _grade;
+
+
+    /**
+     * Constructor
+     * 
+     * @param code
+     * @param year
+     * @param ec
+     * @param grade
+     */
+    public CourseSubject(String code, String name, int year, int ec, float grade)
+    {
+        this.setCourseCode(code);
+        this.setCourseName(name);
+        this.setCourseYear(year);
+        this.setECs(ec);
+        this.setGrade(grade);
+    }
 
 
     /**
@@ -37,6 +56,18 @@ public class CourseSubject
     {
         this._courseCode = code;
     }
+
+
+    /**
+     * Method to set the couse code
+     * 
+     * @param name
+     */
+    public void setCourseName(String name)
+    {
+        this._courseName = name;
+    }
+
 
 
     /**
@@ -80,6 +111,17 @@ public class CourseSubject
     public String getCourseCode()
     {
         return this._courseCode;
+    }
+
+
+    /**
+     * Method to get the course name
+     * 
+     * @return
+     */
+    public String getCourseName()
+    {
+        return this._courseName;
     }
 
 
