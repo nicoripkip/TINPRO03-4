@@ -135,7 +135,18 @@ public class App
                     administration.printStudentsBySubject(c, g);
                     break;
                 case "C":
+                    System.out.println("\t\t");
+                    System.out.println("\t\t---- Studenten in een klas ----");
+                    System.out.println("\t\t");
+                    scanner = new Scanner(System.in);
+                    System.out.print("Voer de opleiding in: ");
+                    c = scanner.nextLine();
 
+                    System.out.print("Voer de student naam in: ");
+                    scanner = new Scanner(System.in);
+                    g = scanner.nextLine();
+
+                    administration.printStudentOpenSubjects(c, g);
                     break;
                 case "D":
 
@@ -160,7 +171,7 @@ public class App
                     System.out.print("Voer de opleiding in: ");
                     c = scanner.nextLine();
 
-                    System.out.print("Voer naam student in: ");
+                    System.out.print("Voer de student naam in: ");
                     scanner = new Scanner(System.in);
                     g = scanner.nextLine();
 

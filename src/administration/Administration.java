@@ -77,15 +77,50 @@ public class Administration
     }
 
 
-    public void printStudentOpenSubjects(Student student)
+    /**
+     * Method to print all the students open subjects
+     * 
+     * @param student
+     */
+    public void printStudentOpenSubjects(String course, String name)
     {
+        List<CourseSubject> subjects = ListOfStudents.get(course).stream()
+            .filter(x -> x.getName().equals(name))
+            .flatMap(x -> x.getTotalSubjects().stream())
+            .filter(y -> y.getGrade() < 5.5)
+            .collect(Collectors.toList());
+        
+        int total = 0;
+        for (CourseSubject cs : subjects) {
+            cs.display();
+            total++;
+        }
 
+        System.out.println("\nTotaal: " + total + " vakken staan nog open");
     }
 
 
-    public void printStudentFinishedSubjects(Student student)
+    /**
+     * Method to print all the students finished subjects
+     * 
+     * @param course
+     * @param name
+     */
+    public void printStudentFinishedSubjects(String course, String name)
     {
+        List<CourseSubject> subjects = ListOfStudents.get(course).stream()
+            .filter(x -> x.getName().equals(name))
+            .flatMap(x -> x.getTotalSubjects().stream())
+            .filter(y -> y.getGrade() < 5.5)
+            .collect(Collectors.toList());
+        
+        int total = 0;
+        for (CourseSubject cs : subjects) {
+            cs.display();
+            total++;
+        }
 
+        System.out.println("\nTotaal: " + total + " vakken staan nog open");
     }
 
 
