@@ -48,6 +48,21 @@ public class CourseSubject
 
 
     /**
+     * Method to display the contents of the object
+     * 
+     */
+    public void display()
+    {
+        System.out.print("\n\n");
+        System.out.println("Vakcode: " + this.getCourseCode());
+        System.out.println("Vaknaam: " + this.getCourseName());
+        System.out.println("Vakjaar: " + this.getCourseYear());
+        System.out.println("Aantal EC's: " + this.getECs());
+        System.out.println("Cijfer: " + this.getGrade());
+    }
+
+
+    /**
      * Method to set the couse code
      * 
      * @param code

@@ -67,7 +67,7 @@ public class Hashtable<T, U>
     private int hash(T key)
     {
         int k = convertToNumber(key);
-        return ((MAX_TABLE_SIZE/5) * k * 2) % MAX_TABLE_SIZE;
+        return (int)Math.floor(((MAX_TABLE_SIZE/2) * k * Math.E*0.25) % MAX_TABLE_SIZE);
     }
 
 
@@ -104,6 +104,8 @@ public class Hashtable<T, U>
         }
 
         int index = hash(key);
+
+        System.out.println("Key: " + index);
 
         return this.getValues().get(index).getValue();
     }

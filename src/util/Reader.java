@@ -3,10 +3,13 @@ package util;
 
 import java.io.IOException;
 import java.net.URI;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Scanner;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 
 
 /**
@@ -67,13 +70,30 @@ public class Reader
      */
     public static String getDataFromFile(String path) throws IOException
     {
-        BufferedReader reader = readFile(path);      
+        FileInputStream inputStream = new FileInputStream(path);
+        Scanner sc = new Scanner(inputStream, StandardCharsets.UTF_8);
         StringBuilder resultString = new StringBuilder();
 
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            resultString.append(line);
+        try {
+            while (sc.hasNextLine()) {
+                resultString.append(sc.nextLine());
+            }
+        } finally {
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            if (sc != null) {
+                sc.close();
+            }
         }
+
+        // BufferedReader reader = readFile(path);      
+        // StringBuilder resultString = new StringBuilder();
+
+        // String line = null;
+        // while ((line = reader.readLine()) != null) {
+        //     resultString.append(line);
+        // }
 
         // removeBlankSpace(resultString);
 
