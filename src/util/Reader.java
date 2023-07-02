@@ -75,7 +75,7 @@ public class Reader
             resultString.append(line);
         }
 
-        removeBlankSpace(resultString);
+        // removeBlankSpace(resultString);
 
         return resultString.toString();
     }

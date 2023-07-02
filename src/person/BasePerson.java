@@ -10,8 +10,7 @@ import java.time.LocalDate;
  */
 abstract class BasePerson
 {
-    private String _firstname;
-    private String _lastname;
+    private String _name;
     private LocalDate _dateOfBirth;
 
 
@@ -22,10 +21,9 @@ abstract class BasePerson
      * @param lastname
      * @param dateOfBirth
      */
-    public BasePerson(String firstname, String lastname, LocalDate dateOfBirth)
+    public BasePerson(String firstname, LocalDate dateOfBirth)
     {
-        this.setFirstName(firstname);
-        this.setLastName(lastname);
+        this.setName(firstname);
         this.setDateOfBirth(dateOfBirth);
     }
 
@@ -35,9 +33,9 @@ abstract class BasePerson
      * 
      * @param firstname
      */
-    public void setFirstName(String firstname)
+    public void setName(String name)
     {
-        this._firstname = firstname;
+        this._name = name;
     }
 
 
@@ -46,33 +44,11 @@ abstract class BasePerson
      * 
      * @return String
      */
-    public String getFirstName()
+    public String getName()
     {
-        return this._firstname;
+        return this._name;
     }
-
-
-    /**
-     * Methode voor het zetten van de achternaam
-     * 
-     * @param lastname
-     */
-    public void setLastName(String lastname)
-    {
-        this._lastname = lastname;
-    }
-
-
-    /**
-     * Methode voor het ophalen van de achternaam
-     * 
-     * @return
-     */
-    public String getLastName()
-    {
-        return this._lastname;
-    }
-
+    
 
     /**
      * Methode voor het zetten van de geboortedatum

@@ -20,8 +20,11 @@ import org.json.*;
  */
 public class App
 {
-    // private static final String BASE_STRING = "file:///C:/Users/Nicki/Documents/Projecten/Java/TINPRO03-4/";
-    private static final String BASE_STRING = "file:///home/niko/Documenten/Projecten/Java/TINPRO03-4/";
+    private static final String BASE_STRING = "file:///C:/Users/Nicki/Documents/Projecten/Java/TINPRO03-4/";
+    // private static final String BASE_STRING = "file:///home/niko/Documenten/Projecten/Java/TINPRO03-4/";
+
+
+    private static Map<String, List<Student>> ListOfStudents = new HashMap<String, List<Student>>();
 
 
     /**
@@ -36,19 +39,12 @@ public class App
         window.bootscreen();
 
         String data = Reader.getDataFromFile(BASE_STRING + "studentData.json");
-
-        // System.out.println(Colors.PRINT_INFO + data);
-
-    
-        Map<String, List<Student>> ListOfStudents = new HashMap<String, List<Student>>();
-
         JSONArray ja = new JSONArray(data);
 
         for (int i = 0; i < ja.length(); i++) {
             JSONObject jo = ja.getJSONObject(i);
 
             Student t = new Student(
-                jo.getString("naam"), 
                 jo.getString("naam"), 
                  null, 
                 Long.parseLong(jo.getString("studentnummer")), 
@@ -57,21 +53,23 @@ public class App
             );
 
             JSONArray total = jo.getJSONArray("vakkenpakket");
-
-            List<CourseSubject> subjects = new LinkedList<CourseSubject>();
             JSONArray open = jo.getJSONArray("behaalde_cijfers");
-            int c = 0;
+            
+            List<CourseSubject> subjects = new LinkedList<CourseSubject>();
+            
             for (int j = 0; j < total.length(); j++) {
                 JSONObject subject = total.getJSONObject(j);
-                float grade = 0;
+                double grade = 0;
 
                 System.out.println();
-
-                if (open.getJSONObject(c).getString("vakcode") == subject.getString("vakcode")) {
-                    grade = Float.parseFloat(open.getJSONObject(c).getString("cijfer"));
-                    c++;
-                } else {
-                    grade = 0;
+                
+                for (int c = 0; c < open.length(); c++) {
+                    if (open.getJSONObject(c).getString("vakcode").equals(subject.getString("vakcode"))) {
+                        grade = open.getJSONObject(c).getDouble("cijfer");
+                        break;
+                    } else {
+                        grade = 0;
+                    }
                 }
 
                 CourseSubject cs = new CourseSubject(
@@ -84,6 +82,9 @@ public class App
 
                 subjects.add(cs);
             }
+
+            // subjects.stream()
+            //     .filter()
 
             t.setTotalSubjects(subjects);
 

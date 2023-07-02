@@ -11,7 +11,7 @@ public class CourseSubject
     private String   _courseName;
     private int      _courseYear;
     private int      _totalEcs;
-    private float    _grade;
+    private double   _grade;
 
 
     /**
@@ -22,7 +22,7 @@ public class CourseSubject
      * @param ec
      * @param grade
      */
-    public CourseSubject(String code, String name, int year, int ec, float grade)
+    public CourseSubject(String code, String name, int year, int ec, double grade)
     {
         this.setCourseCode(code);
         this.setCourseName(name);
@@ -97,7 +97,7 @@ public class CourseSubject
      * 
      * @param grade
      */
-    public void setGrade(float grade)
+    public void setGrade(double grade)
     {
         this._grade = grade;
     }
@@ -142,7 +142,7 @@ public class CourseSubject
     }
 
 
-    public float getGrade()
+    public double getGrade()
     {
         return this._grade;
     }

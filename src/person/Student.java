@@ -29,9 +29,9 @@ public class Student extends BasePerson
      * @param lastname
      * @param dateOfBirth
      */
-    public Student(String firstname, String lastname, LocalDate dateOfBirth, long number, String course, String year)
+    public Student(String firstname, LocalDate dateOfBirth, long number, String course, String year)
     {
-        super(firstname, lastname, dateOfBirth);
+        super(firstname, dateOfBirth);
 
         this.setStudentNumber(number);
 
@@ -45,7 +45,7 @@ public class Student extends BasePerson
 
     public void Display()
     {
-        System.out.println("Naam: " + this.getFirstName() + " " + this.getLastName());
+        System.out.println("Naam: " + this.getName());
         System.out.println("Klas: " + this.getClass());
         System.out.println("Studie: " + this.getCourse());
         System.out.println("Studiejaar: " + this.getCurrentYear());
