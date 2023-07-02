@@ -13,6 +13,7 @@ import util.Reader;
 import org.json.*;
 import util.Hashtable;
 import util.KeyPair;
+import administration.Administration;
 
 
 /**
@@ -25,9 +26,6 @@ public class App
     // private static final String BASE_STRING = "file:///home/niko/Documenten/Projecten/Java/TINPRO03-4/";
 
 
-    private static Hashtable<String, List<Student>> ListOfStudents = new Hashtable<String, List<Student>>();
-
-
     /**
      * Methode voor het starten van het programma
      * 
@@ -38,6 +36,8 @@ public class App
     {
         Window window = new Window();
         window.bootscreen();
+
+        Administration administration = new Administration();
 
         String data = Reader.getDataFromFile(BASE_STRING + "studentData.json");
         JSONArray ja = new JSONArray(data);
@@ -62,8 +62,6 @@ public class App
             for (int j = 0; j < total.length(); j++) {
                 JSONObject subject = total.getJSONObject(j);
                 double grade = 0;
-
-                System.out.println();
                 
                 for (int c = 0; c < open.length(); c++) {
                     if (open.getJSONObject(c).getString("vakcode").equals(subject.getString("vakcode"))) {
@@ -87,21 +85,23 @@ public class App
 
             t.setTotalSubjects(subjects);
 
-            if (ListOfStudents.containsKey(jo.getString("studierichting"))) {
-                ListOfStudents.get(jo.getString("studierichting")).add(t);
+            if (Administration.ListOfStudents.containsKey(jo.getString("studierichting"))) {
+                Administration.ListOfStudents.get(jo.getString("studierichting")).add(t);
             } else {
                 List<Student> students = new LinkedList<Student>();
                 students.add(t);
-                ListOfStudents.insert(jo.getString("studierichting"), students);
+                Administration.ListOfStudents.insert(jo.getString("studierichting"), students);
             }
         }
 
-        for (KeyPair<String, List<Student>> l : ListOfStudents.getValues()) {
-            if (l != null) {
-                for (int i = 0; i < l.getValue().size(); i++) {
-                    l.getValue().get(i).Display();
-                }
-            }
-        }
+        // for (KeyPair<String, List<Student>> l : ListOfStudents.getValues()) {
+        //     if (l != null) {
+        //         for (int i = 0; i < l.getValue().size(); i++) {
+        //             l.getValue().get(i).Display();
+        //         }
+        //     }
+        // }
+    
+        administration.printStudentsByGroup("IT1.1");
     }
 }
