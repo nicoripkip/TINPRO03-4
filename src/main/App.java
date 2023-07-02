@@ -47,6 +47,7 @@ public class App
 
             Student t = new Student(
                 jo.getString("naam"), 
+                jo.getString("klas"),
                  null, 
                 Long.parseLong(jo.getString("studentnummer")), 
                 jo.getString("studierichting"),

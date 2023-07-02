@@ -2,7 +2,6 @@ package person;
 
 
 import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.List;
 
 import subject.CourseSubject;
@@ -16,7 +15,7 @@ public class Student extends BasePerson
 {
     private long _studentNumber;
     private String _course;
-    private String _class;
+    private String _group;
     private String _currentYear;
     private List<CourseSubject> _totalSubjects;
     private List<CourseSubject> _openSubjects;
@@ -29,12 +28,12 @@ public class Student extends BasePerson
      * @param lastname
      * @param dateOfBirth
      */
-    public Student(String firstname, LocalDate dateOfBirth, long number, String course, String year)
+    public Student(String firstname, String group, LocalDate dateOfBirth, long number, String course, String year)
     {
         super(firstname, dateOfBirth);
 
         this.setStudentNumber(number);
-
+        this.setGroup(group);
         this.setCourse(course);
         this.setCurrentYear(year);
 
@@ -46,7 +45,7 @@ public class Student extends BasePerson
     public void Display()
     {
         System.out.println("Naam: " + this.getName());
-        System.out.println("Klas: " + this.getClass());
+        System.out.println("Klas: " + this.getGroup());
         System.out.println("Studie: " + this.getCourse());
         System.out.println("Studiejaar: " + this.getCurrentYear());
         System.out.println("Vakken:");
@@ -113,9 +112,9 @@ public class Student extends BasePerson
      * 
      * @param clazz
      */
-    public void setClass(String clazz)
+    public void setGroup(String group)
     {
-        this._class = clazz;
+        this._group = group;
     }
 
 
@@ -190,8 +189,8 @@ public class Student extends BasePerson
      * 
      * @param total
      */
-    public String getClasz()
+    public String getGroup()
     {
-        return this._class;
+        return this._group;
     }
 }
