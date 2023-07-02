@@ -4,6 +4,11 @@ import subject.CourseSubject;
 
 import person.Student;
 
+
+/**
+ * @author Nico van Ommen | 1030808
+ * @since 02/07/2023
+ */
 public class Administration {
     void printStudentsByClass(String clazz)
     {
