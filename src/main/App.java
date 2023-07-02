@@ -5,12 +5,10 @@ import window.Window;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map.Entry;
 import java.util.Scanner;
 
 import person.Student;
 import subject.CourseSubject;
-import util.KeyPair;
 import util.Reader;
 import org.json.*;
 import administration.Administration;
@@ -149,13 +147,46 @@ public class App
                     administration.printStudentOpenSubjects(c, g);
                     break;
                 case "D":
+                    System.out.println("\t\t");
+                    System.out.println("\t\t---- Studenten in een klas ----");
+                    System.out.println("\t\t");
+                    scanner = new Scanner(System.in);
+                    System.out.print("Voer de opleiding in: ");
+                    c = scanner.nextLine();
 
+                    System.out.print("Voer de student naam in: ");
+                    scanner = new Scanner(System.in);
+                    g = scanner.nextLine();
+
+                    administration.printStudentFinishedSubjects(c, g);
                     break;
                 case "E":
+                    System.out.println("\t\t");
+                    System.out.println("\t\t---- Studenten in een klas ----");
+                    System.out.println("\t\t");
+                    scanner = new Scanner(System.in);
+                    System.out.print("Voer de opleiding in: ");
+                    c = scanner.nextLine();
 
+                    System.out.print("Voer het vak in: ");
+                    scanner = new Scanner(System.in);
+                    g = scanner.nextLine();
+
+                    administration.printStudentGradeAverage(c, g);
                     break;
                 case "F":
+                    System.out.println("\t\t");
+                    System.out.println("\t\t---- Studenten in een klas ----");
+                    System.out.println("\t\t");
+                    scanner = new Scanner(System.in);
+                    System.out.print("Voer de opleiding in: ");
+                    c = scanner.nextLine();
 
+                    System.out.print("Voer de student naam in: ");
+                    scanner = new Scanner(System.in);
+                    g = scanner.nextLine();
+
+                    administration.printStudentWeightedAverage(c, g);
                     break;
                 case "G":
 
@@ -192,7 +223,7 @@ public class App
         System.out.println("B) Studenten per vak");
         System.out.println("C) Student openstaande vakken");
         System.out.println("D) Student afgeronde vakken");
-        System.out.println("E) Gemiddelde cijfer student");
+        System.out.println("E) Gemiddelde cijfer vak");
         System.out.println("F) Gewogen gemiddelde student");
         System.out.println("G) Percentage studenten vak gehaald");
         System.out.println("H) Student progressie");

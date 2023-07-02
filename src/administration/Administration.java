@@ -5,8 +5,9 @@ import util.Hashtable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import javax.security.auth.Subject;
 
 import person.Student;
 
@@ -27,6 +28,11 @@ public class Administration
      */
     public void printStudentsByGroup(String course, String group)
     {
+        if (ListOfStudents.get(course) == null) {
+            System.out.print("Sorrie, Klas niet gevonden!");
+            return;
+        }
+
         List<Student> students = ListOfStudents.get(course).stream()
             .filter(c -> c.getGroup().equals(group))
             .collect(Collectors.toList());
@@ -45,6 +51,11 @@ public class Administration
      */
     public void printStudentsBySubject(String course, String subject)
     {
+        if (ListOfStudents.get(course) == null) {
+            System.out.print("Sorrie, vak niet gevonden!");
+            return;
+        }
+
         List<Student> students = ListOfStudents.get(course).stream()
             .filter(c -> c.getTotalSubjects().stream()
                 .anyMatch(x -> x.getCourseCode().equals(subject)))
@@ -64,6 +75,11 @@ public class Administration
      */
     public void printStudentSubjectList(String course, String name)
     {
+        if (ListOfStudents.get(course) == null) {
+            System.out.print("Sorrie, student niet gevonden!");
+            return;
+        }
+
         List<CourseSubject> subjects = ListOfStudents.get(course).stream()
             .filter(x -> x.getName().equals(name))
             .findAny()
@@ -84,6 +100,11 @@ public class Administration
      */
     public void printStudentOpenSubjects(String course, String name)
     {
+        if (ListOfStudents.get(course) == null) {
+            System.out.print("Sorrie, Student niet gevonden!");
+            return;
+        }
+
         List<CourseSubject> subjects = ListOfStudents.get(course).stream()
             .filter(x -> x.getName().equals(name))
             .flatMap(x -> x.getTotalSubjects().stream())
@@ -108,10 +129,15 @@ public class Administration
      */
     public void printStudentFinishedSubjects(String course, String name)
     {
+        if (ListOfStudents.get(course) == null) {
+            System.out.print("Sorrie, Student niet gevonden!");
+            return;
+        }
+
         List<CourseSubject> subjects = ListOfStudents.get(course).stream()
             .filter(x -> x.getName().equals(name))
             .flatMap(x -> x.getTotalSubjects().stream())
-            .filter(y -> y.getGrade() < 5.5)
+            .filter(y -> y.getGrade() > 5.5)
             .collect(Collectors.toList());
         
         int total = 0;
@@ -120,25 +146,90 @@ public class Administration
             total++;
         }
 
-        System.out.println("\nTotaal: " + total + " vakken staan nog open");
+        System.out.println("\nTotaal: " + total + " vakken afgesloten");
     }
 
 
-    public void printStudentGradeAverage(Student student)
+    /**
+     * Method to print the average grade of the student who finished the subject
+     * 
+     * @param course
+     * @param subject
+     */
+    public void printStudentGradeAverage(String course, String subject)
     {
+        if (ListOfStudents.get(course) == null) {
+            System.out.print("Sorrie, Vak niet gevonden!");
+            return;
+        }
 
+        double average = ListOfStudents.get(course).stream()
+            .flatMap(x -> x.getTotalSubjects().stream())
+            .filter(y -> y.getCourseCode().equals(subject))
+            .collect(Collectors.toList())
+            .stream()
+            .filter(x -> x.getGrade() > 5.5)
+            .mapToDouble(CourseSubject::getGrade)
+            .sum();
+
+        double total = ListOfStudents.get(course).stream()
+            .flatMap(x -> x.getTotalSubjects().stream())
+            .filter(y -> y.getCourseCode().equals(subject))
+            .count();
+
+
+        System.out.println("Gemiddelde cijfer voor het vak: " + average/total);
     }
 
 
-    public void printStudentWeightedAverage(Student student)
+    /**
+     * Method
+     * 
+     * @param course
+     * @param subject
+     */
+    public void printStudentWeightedAverage(String course, String name)
     {
+        if (ListOfStudents.get(course) == null) {
+            System.out.print("Sorrie, student niet gevonden!");
+            return;
+        }
 
+        List<CourseSubject> subjects = ListOfStudents.get(course).stream()
+            .filter(x -> x.getName().equals(name))
+            .findAny()
+            .map(Student::getTotalSubjects)
+            .orElse(new ArrayList<CourseSubject>());
+
+        double average = subjects.stream()
+            .mapToDouble(CourseSubject::getGrade)
+            .sum();
+
+        int totalECs = subjects.stream()
+            .filter(x -> x.getGrade() > 5.5)
+            .mapToInt(CourseSubject::getECs)
+            .sum();
+
+        double total = subjects.stream()
+            .count();
+        
+        System.out.println("Gemiddelde resultaat van de student: " + average/total);
+        System.out.println("Totaal aan gehaalde ECs: " + totalECs);
     }
 
 
-    public void printPercentageStudentFinishedSubject(Student student)
+    /**
+     * 
+     * 
+     * @param course
+     * @param subject
+     */
+    public void printPercentageStudentFinishedSubject(String course, String subject)
     {
-
+        if (ListOfStudents.get(course) == null) {
+            System.out.print("Sorrie, Vak niet gevonden!");
+            return;
+        }
     }
 
 
