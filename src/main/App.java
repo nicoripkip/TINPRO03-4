@@ -3,15 +3,16 @@ package main;
 
 import window.Window;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.Map.Entry;
 
 import person.Student;
 import subject.CourseSubject;
 import util.Reader;
 import org.json.*;
+import util.Hashtable;
+import util.KeyPair;
 
 
 /**
@@ -24,7 +25,7 @@ public class App
     // private static final String BASE_STRING = "file:///home/niko/Documenten/Projecten/Java/TINPRO03-4/";
 
 
-    private static Map<String, List<Student>> ListOfStudents = new HashMap<String, List<Student>>();
+    private static Hashtable<String, List<Student>> ListOfStudents = new Hashtable<String, List<Student>>();
 
 
     /**
@@ -83,9 +84,6 @@ public class App
                 subjects.add(cs);
             }
 
-            // subjects.stream()
-            //     .filter()
-
             t.setTotalSubjects(subjects);
 
             if (ListOfStudents.containsKey(jo.getString("studierichting"))) {
@@ -93,13 +91,15 @@ public class App
             } else {
                 List<Student> students = new LinkedList<Student>();
                 students.add(t);
-                ListOfStudents.put(jo.getString("studierichting"), students);
+                ListOfStudents.insert(jo.getString("studierichting"), students);
             }
         }
 
-        for (Map.Entry<String, List<Student>> entry : ListOfStudents.entrySet()) {
-            for (int i = 0; i < entry.getValue().size(); i++) {
-                entry.getValue().get(i).Display();
+        for (KeyPair<String, List<Student>> l : ListOfStudents.getValues()) {
+            if (l != null) {
+                for (int i = 0; i < l.getValue().size(); i++) {
+                    l.getValue().get(i).Display();
+                }
             }
         }
     }
